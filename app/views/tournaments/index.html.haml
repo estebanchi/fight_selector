@@ -1,0 +1,18 @@
+.title.has-text-centered BIENVENIDO SELECCIONA UN TORNEO
+.has-text-centered= link_to 'AGREGAR TORNEO', new_tournament_path, class: 'button is-rounded is-blue'
+%hr/
+%table.table.is-fullwidth
+  %thead
+    %tr
+      %th NOMBRE
+      %th FECHA
+      %th 
+  %tbody
+    - @tournaments.each do |t|
+      %tr
+        %td= t.name
+        %td= t.created_at.strftime('%d/%m/%Y %I:%M %p')
+        %td= link_to 'VER DETALLE', tournament_path(t), class: 'button is-rounded is-small is-black'
+    - unless @tournaments.exists?
+      %tr
+        %th.has-text-centered{ colspan: 3 } NO EXISTEN TORNEOS AGREGADOS

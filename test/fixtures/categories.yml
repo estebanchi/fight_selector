@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  min_weight: 1
+  max_weight: 1
+
+two:
+  min_weight: 1
+  max_weight: 1

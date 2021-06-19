@@ -1,0 +1,58 @@
+.title.has-text-centered
+  = @tournament.name.titleize
+  %strong.help
+    REALIZADO:
+    = @tournament.created_at.strftime('%d/%m/%Y %I:%M %p')
+%hr/
+.columns
+  .column
+    .title.is-4 ESCUELAS INSCRITAS
+    %table.table.is-fullwidth
+      %thead
+        %tr 
+          %th NOMBRE
+          %th NRO. ESTUDIANTES
+          %th
+      %tbody
+        - @tournament.academies.each do |a|
+          %tr
+            %td= a.name.titleize
+            %td= a.fighters.count
+            %th= link_to 'VER DETALLE', tournament_academy_path(@tournament, a), class: 'button is-small is-rounded is-black'
+        - unless @tournament.academies.exists?
+          %tr
+            %th.has-text-centered{colspan: 3} NO HAY ESCUELAS INSCRITAS
+        %tr
+          %th.has-text-centered{colspan: 3}
+            = link_to 'AGREGAR ESCUELA', new_tournament_academy_path(@tournament), class: 'button is-rounded is-blue'
+  .column
+    .title.is-4 CATEGORIAS INSCRITAS
+    %table.table.is-fullwidth
+      %thead
+        %tr
+          %th PESO MIN.
+          %th PESO MAX.
+          %th NIVEL
+          %th PELEADORES
+          %th
+      %tbody
+        - @tournament.categories.each do |c|
+          %tr
+            - if c.max_weight > 91
+              %th.has-text-centered{colspan: 2} PESO COMPLETO
+              %td= c.level
+            - else
+              %td= c.min_weight
+              %td= c.max_weight
+              %td= c.level
+            %td= c.fighters.count
+            %th= link_to 'VER DETALLES', tournament_category_path(@tournament, c), class: 'button is-rounded is-small is-black'
+        - unless @tournament.categories.exists?
+          %tr
+            %th.has-text-centered{colspan: 4} NO HAY CATEGORIAS CON PELEADORES INSCRITOS
+        %tr
+          %th.has-text-centered{ colspan: 4 }
+            = link_to 'VER CATEGORIAS', tournament_categories_path(@tournament), class: 'button is-rounded is-yellow'
+%hr
+.has-text-centered
+  %strong= link_to 'SELECCIONAR PELEAS', tournament_categories_fights_path(@tournament), class: 'button is-rounded is-red'

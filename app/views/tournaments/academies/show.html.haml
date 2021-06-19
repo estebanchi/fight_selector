@@ -1,0 +1,28 @@
+= render partial: '/shared/titles',
+  locals: { links: [{ name: 'TORNEO ACTUAL', path: tournament_path(@tournament) }],
+  title: @academy.name.upcase }
+%hr
+.title.is-4 LISTA DE PELEADORES
+%table.table.is-fullwidth
+  %thead
+    %th NOMBRE
+    %th EDAD
+    %th CEDULA
+    %th PESO
+    %th CATEGORIA
+    %th NIVEL
+  %tbody
+    - @academy.fighters.each do |f|
+      %tr
+        %td= f.name.titleize
+        %td= f.age
+        %td= f.document
+        %td= f.weight
+        %td= "#{f.category.max_weight < 100 ? "#{f.category.min_weight} - #{f.category.max_weight}" : 'Peso Completo'}"
+        %td= f.level.name
+    - unless @academy.fighters.exists?
+      %tr
+        %th.has-text-centered{colspan: 6} NO SE HAN AGREGADO PELEADORES
+    %tr
+      %th.has-text-centered{colspan: 6}
+        = link_to 'AGREGAR PELEADOR', new_tournament_academy_fighter_path(@tournament, @academy), class: 'button is-rounded is-yellow'

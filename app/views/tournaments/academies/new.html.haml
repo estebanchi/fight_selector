@@ -1,0 +1,11 @@
+= render partial: '/shared/titles',
+  locals: { links: [{ name: 'TORNEO ACTUAL', path: tournament_path(@tournament) }],
+  title: "AGREGAR ESCUELA PARTICIPANTE EN #{@tournament.name.upcase}" }
+%hr/
+= form_with model: [@tournament, @academy], local: true do |f|
+  .field
+    = f.label :name, 'INGRESAR EL NOMBRE DE LA ESCUELA', class: 'label'
+    %p.control
+      = f.text_field :name, class: 'input', autofocus: true
+  .field
+    %strong= f.submit 'AGREGAR', class: 'button is-rounded is-blue'

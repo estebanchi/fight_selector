@@ -1,0 +1,24 @@
+- category = "#{@category.min_weight < 90 ? "#{@category.min_weight}KG - #{@category.max_weight}KG" : 'PESO COMPLETO'}"
+= render partial: '/shared/titles',
+  locals: { links: [{ name: 'TORNEO ACTUAL', path: tournament_path(@tournament) },
+                    {name: 'LISTA DE CATEGORIAS', path: tournament_categories_path(@tournament, @category)}],
+  title: "LISTA DE PELEADORES EN LA CATEGORIA #{category} #{@category.level}" }
+%table.table.is-fullwidth
+  %thead
+    %tr
+      %th NOMBRE
+      %th EDAD
+      %th PESO
+      %th DOCUMENTO
+      %th ESCUELA
+      %th
+  %tbody
+    - @category.fighters.each do |f|
+      %tr
+        %td= f.name
+        %td= f.age
+        %td= f.weight
+        %td= f.document
+        %th= link_to f.academy.name, academy_path(f.academy), class: 'has-text-blue'
+        %th= link_to 'VER DETALLES', tournament_category_fighters_path(@tournament, @category, f), 
+              class: 'button is-rounded is-small is-black'

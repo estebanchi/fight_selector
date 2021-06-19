@@ -1,0 +1,17 @@
+= render partial: '/shared/titles', 
+  locals: { title: "PELEAS EN LA CATEGORIA #{@category.name}",
+  links: [{ name: 'TORNEO ACTUAL', path: tournament_path(@tournament) },
+          { name: 'LISTA DE CATEGORIAS', path: tournament_categories_fights_path(@tournament) }] }
+%main#tournament
+  - @category.rounds.each do |r|
+    %ul{ class: "round round-#{r.number}" }
+      - r.fights.each do |fight|
+        = link_to tournament_categories_fight_fight_path(@tournament , @category, fight),
+          class: 'has-text-blue' do
+          - fight.fighters.each do |f|
+            %li{ class: "#{f == fight.fighters.first ? 'spacer' : 'game game-spacer'}" }
+            %li{ class: "game game-#{f == fight.fighters.first ? 'top' : 'bottom'} 
+                         #{f.winner? ? 'winner' : ''}" }
+              %p
+                = "#{f.name.upcase}"
+                %span.has-text-weight-bold= "#{f.weight}KG"

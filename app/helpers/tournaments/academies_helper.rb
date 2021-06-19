@@ -1,0 +1,2 @@
+module Tournaments::AcademiesHelper
+end

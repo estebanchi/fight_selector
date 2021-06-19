@@ -1,0 +1,41 @@
+@import "bulma";
+
+$brown: #5A3620;
+$brown-invert: findColorInvert($brown);
+
+$white: #fff;
+
+$red: #c00;
+$red-invert: findColorInvert($red);
+
+$blue: #2823bc;
+$blue-invert: findColorInvert($blue);
+
+$yellow: #e6c20a;
+$yellow-invert: findColorInvert($yellow);
+
+$custom-colors: (
+  "brown": (
+    $brown,
+    $brown-invert
+  ),
+  "withe": (
+    $white
+  ),
+  "red": (
+    $red,
+    $red-invert
+  ),
+  "blue": (
+    $blue,
+    $blue-invert
+  ),
+  "yellow": (
+    $yellow,
+    $yellow-invert
+  )
+);
+
+$colors: mergeColorMaps($colors, $custom-colors);
+
+@import "bulma";

@@ -1,0 +1,24 @@
+= render partial: '/shared/titles',
+  locals: { links: [{ name: 'TORNEO ACTUAL', path: tournament_path(@tournament) }],
+  title: "LISTA DE CATEGORIAS" }
+%table.table.is-fullwidth
+  %thead
+    %tr
+      %th PESO MINIMO
+      %th PESO MAXIMO
+      %th CANTIDAD DE PELEADORES
+      %th CANTIDAD DE PELEAS
+      %th TORNEOS
+      %th
+  %tbody
+    - @category.each do |c|
+      %tr
+        - if c.max_weight > 91
+          %th.has-text-centered{colspan: 2} PESO COMPLETO
+        - else
+          %td= c.min_weight
+          %td= c.max_weight
+        %td= c.fighters.count
+        %td= c.fights.count
+        %td= c.tournaments.count
+        %th= link_to 'VER DETALLES', tournament_category_path(@tournament, c), class: 'button is-rounded is-small is-black'

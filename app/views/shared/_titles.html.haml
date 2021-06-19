@@ -1,0 +1,14 @@
+.columns
+  .column.title.has-text-centered= title
+  .column.is-2
+    .dropdown.is-hoverable
+      .dropdown-trigger
+        %button.button{'aria-controls': 'dropdown-menu3', 'aria-haspopup': 'true'}
+          %span IR A...
+          %span.icon.is-small
+            %i.fas.fa-angle-down{'aria-hidden': 'true'}
+      #dropdown-menu3.dropdown-menu{role: 'menu'}
+        .dropdown-content
+          - links.each do |l|
+            %strong= link_to "#{l[:name]}", l[:path], class: 'dropdown-item'
+      

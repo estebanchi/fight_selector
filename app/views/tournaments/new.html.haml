@@ -1,0 +1,9 @@
+.title.has-text-centered BIENVENIDO ¿DESEAS AGREGAR UN NUEVO TORNEO?
+%hr/
+= form_with model: @tournament, local: true do |f|
+  .field
+    = f.label :name, 'INGRESAR EL NOMBRE DEL TORNEO', class: 'label'
+    %p.control
+      = f.text_field :name, class: 'input', autofocus: true
+  .field
+    = f.submit 'AGREGAR', class: 'button is-rounded is-blue'

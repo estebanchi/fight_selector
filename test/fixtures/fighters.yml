@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  age: 1
+  weight: 9.99
+  document: MyString
+  level: one
+  academy: one
+  category: one
+
+two:
+  name: MyString
+  age: 1
+  weight: 9.99
+  document: MyString
+  level: two
+  academy: two
+  category: two

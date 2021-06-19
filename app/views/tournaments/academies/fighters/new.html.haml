@@ -1,0 +1,28 @@
+= render partial: '/shared/titles',
+  locals: { links: [{ name: 'TORNEO ACTUAL', path: tournament_path(@tournament) },
+                    { name: @academy.name.upcase, path: tournament_academy_path(@tournament, @academy)}],
+  title: "AGREGAR PELEADOR DE LA ESCUELA #{@academy.name.upcase}" }
+= form_with model: [@tournament, @academy, @fighter], local: true do |f|
+  .field
+    = f.label :name, 'NOMBRE DEL PELEADOR', class: 'label'
+    %p.control
+      = f.text_field :name, class: 'input', placeholder: 'Nombre del peleador. Ejemplo: JUAN PEREZ', autofocus: true
+  .field
+    = f.label :document, 'CEDULA DEL PELEADOR', class: 'label'
+    %p.control
+      = f.number_field :document, class: 'input', placeholder: 'NRO de cedula del peleador. Ejemplo: 22222222'
+  .field
+    = f.label :age, 'EDAD DEL PELEADOR', class: 'label'
+    %p.control
+      = f.number_field :age, class: 'input', placeholder: 'Edad del peleador. Ejemplo: 22'
+  .field
+    = f.label :weight, 'PESO DEL PELEADOR', class: 'label'
+    %p.control
+      = f.number_field :weight, class: 'input', placeholder: 'Peso del peleador. Ejemplo: 85'
+  .field
+    = f.label :level, 'NIVEL DEL PELEADOR', class: 'label'
+    %p.select.is-fullwidth
+      = f.select :level_id, Level.all.collect{ |l| [l.name, l.id] }, 
+        { prompt: 'Seleccionar el nivel en el que se encuentra el peleador' }
+  .field
+    %strong= f.submit 'GUARDAR', class: 'button is-rounded is-blue'
