@@ -22,7 +22,7 @@
   .field
     = f.label :level, 'NIVEL DEL PELEADOR', class: 'label'
     %p.select.is-fullwidth
-      = f.select :level_id, Level.all.collect{ |l| [l.name, l.id] }, 
+      = f.select :level_id, Category::LEVELS_LIST.collect{ |l| [l] }, 
         { prompt: 'Seleccionar el nivel en el que se encuentra el peleador' }
   .field
     %strong= f.submit 'GUARDAR', class: 'button is-rounded is-blue'

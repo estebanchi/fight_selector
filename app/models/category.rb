@@ -1,4 +1,6 @@
 class Category < ApplicationRecord
+  LEVELS_LIST = %i[BASICO INTERMEDIO AVANZADO].freeze
+  
   has_many :tournaments_categories
   has_many :tournaments, through: :tournaments_categories
   has_many :fighters
